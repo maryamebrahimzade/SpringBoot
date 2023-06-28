@@ -1,0 +1,46 @@
+# app config
+server:
+  port: 8082
+base-url: localhost:8082
+# spring config
+spring:
+  cloud:
+    openfeign:
+      client:
+        config:
+          wallet:
+            connect-timeout: 10000
+            read-timeout: 3000
+  jpa:
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:mysql://localhost:3306/telepardaz
+    username: root
+    password:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/telepardazlogs
+# external Config
+external:
+  wallet:
+    name: wallet
+    url: http://192.168.43.15:8080
+    path-deposit: /wallet/deposit
+    path-tracking: /wallet/transactions/tracking
+    path-toWallet: /wallet/toWallet
+  bank:
+    name: bank
+    url: http://192.168.43.87:8081
+    path-payment: /bank/payment
+    path-account: /bank/account
+    path-card: /bank/card
+  auth:
+    name: authentication
+    url: http://192.168.43.12:8081
+    path-token: /api/v1/token/is-valid
+# token config
+jwt:
+  secret: secretsecretsecret
+
