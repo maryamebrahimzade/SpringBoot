@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -20,7 +21,7 @@ public abstract class AbstractController<E, D> {
     protected static final Logger logger = LoggerFactory.getLogger(AbstractController.class);
 
     @PostMapping
-    public void add(@Valid @RequestBody D e) throws ServiceException {
+    public void add(@Validated @RequestBody D e) throws ServiceException {
         logger.info("method call");
         logger.info("parameters add");
         service.add(converter.convertDto(e));
