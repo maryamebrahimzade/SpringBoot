@@ -50,10 +50,7 @@ public class JwtService {
         return generateToken(new HashMap<>(), userDetails);
     }
 
-    private String generateToken(
-            Map<String, Object> extractClaims,
-            User userDetails
-    ) {
+    private String generateToken(Map<String, Object> extractClaims, User userDetails) {
         String id = UUID.randomUUID().toString().replace("-", "");
         return Jwts
                 .builder()
