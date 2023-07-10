@@ -1,4 +1,4 @@
-package com.example.common.token;
+package com.example.common.security.token;
 
 import com.example.user.models.User;
 import com.example.user.repositories.UserRepository;
