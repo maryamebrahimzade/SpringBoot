@@ -9,6 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+
 import java.util.Collections;
 
 @Component
@@ -23,14 +24,14 @@ public class EmailPasswordAuthenticationProvider implements AuthenticationProvid
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        User user=userRepository.findUserByEmail(authentication.getName());
-        if(user==null){
+        User user = userRepository.findUserByEmail(authentication.getName());
+        if (user == null) {
             throw new BadCredentialsException("user or password is incorrect");
         }
-        if(!passwordEncoder.matches(authentication.getCredentials().toString(), user.getPassword())){
+        if (!passwordEncoder.matches(authentication.getCredentials().toString(), user.getPassword())) {
             throw new BadCredentialsException("user or password is incorrect");
         }
-        return new UsernamePasswordAuthenticationToken(user,authentication.getCredentials(), Collections.emptyList());
+        return new UsernamePasswordAuthenticationToken(user, authentication.getCredentials(), Collections.emptyList());
     }
 
     @Override
