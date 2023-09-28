@@ -1,4 +1,4 @@
-package com.example.common.security.token;
+package com.example.config.security.token;
 
 import com.example.user.models.User;
 import com.example.user.repositories.UserRepository;
@@ -16,7 +16,6 @@ import java.util.Collections;
 public class EmailPasswordAuthenticationProvider implements AuthenticationProvider {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-
     public EmailPasswordAuthenticationProvider(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;

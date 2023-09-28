@@ -26,7 +26,7 @@ public class RestExceptionHandler {
     @PostConstruct
     public void init() {
         try {
-            properties.load(new FileReader("/home/arezoo/code/final/auth-telepardaz/authentication/src/main/resources/exceptions_fa_IR.properties", StandardCharsets.UTF_8));
+            properties.load(new FileReader("/home/maryam/Maryam-github/springboot/authentication/src/main/resources/exceptions_fa_IR.properties", StandardCharsets.UTF_8));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

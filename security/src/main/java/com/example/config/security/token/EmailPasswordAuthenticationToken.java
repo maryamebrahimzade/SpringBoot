@@ -1,4 +1,4 @@
-package com.example.common.security.token;
+package com.example.config.security.token;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 

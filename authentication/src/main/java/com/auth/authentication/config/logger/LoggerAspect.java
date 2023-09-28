@@ -23,48 +23,48 @@ import java.io.StringWriter;
 @Aspect
 @Component
 public class LoggerAspect {
-    private final static Logger LOGGER = LoggerFactory.getLogger(LoggerAspect.class);
-    private final ObjectMapper objectMapper;
-
-    @Autowired
-    private LogRepository logRepository;
-
-    @Autowired
-    public LoggerAspect(ObjectMapper objectMapper) {
-        this.objectMapper = objectMapper;
-    }
-
-    @PostConstruct
-    public void init() {
-        objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-    }
-
-    @Around("within(com.auth.authentication.controllers.BaseController+)")
-    public Object logger(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
-        Signature signature = proceedingJoinPoint.getSignature();
-        LogModel logModel = new LogModel();
-        logModel.setMethodName(signature.getName());
-        logModel.setRequest(proceedingJoinPoint.getArgs());
-
-        Object value;
-        try {
-            value = proceedingJoinPoint.proceed();
-            if (value != null) {
-                logModel.setResponse(value);
-            }
-            logRepository.save(logModel);
-            LOGGER.info("Success req/res is " + objectMapper.writeValueAsString(logModel));
-        } catch (Throwable e) {
-            StringWriter writer = new StringWriter();
-            PrintWriter printWriter = new PrintWriter(writer);
-            e.printStackTrace(printWriter);
-            writer.close();
-            printWriter.close();
-            logModel.setErrorTrace(writer.toString());
-            logRepository.save(logModel);
-            LOGGER.error("Failure req/res is " + objectMapper.writeValueAsString(logModel));
-            throw e;
-        }
-        return value;
-    }
+//    private final static Logger LOGGER = LoggerFactory.getLogger(LoggerAspect.class);
+//    private final ObjectMapper objectMapper;
+//
+//    @Autowired
+//    private LogRepository logRepository;
+//
+//    @Autowired
+//    public LoggerAspect(ObjectMapper objectMapper) {
+//        this.objectMapper = objectMapper;
+//    }
+//
+//    @PostConstruct
+//    public void init() {
+//        objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+//    }
+//
+//    @Around("within(com.auth.authentication.controllers.BaseController+)")
+//    public Object logger(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+//        Signature signature = proceedingJoinPoint.getSignature();
+//        LogModel logModel = new LogModel();
+//        logModel.setMethodName(signature.getName());
+//        logModel.setRequest(proceedingJoinPoint.getArgs());
+//
+//        Object value;
+//        try {
+//            value = proceedingJoinPoint.proceed();
+//            if (value != null) {
+//                logModel.setResponse(value);
+//            }
+//            logRepository.save(logModel);
+//            LOGGER.info("Success req/res is " + objectMapper.writeValueAsString(logModel));
+//        } catch (Throwable e) {
+//            StringWriter writer = new StringWriter();
+//            PrintWriter printWriter = new PrintWriter(writer);
+//            e.printStackTrace(printWriter);
+//            writer.close();
+//            printWriter.close();
+//            logModel.setErrorTrace(writer.toString());
+//            logRepository.save(logModel);
+//            LOGGER.error("Failure req/res is " + objectMapper.writeValueAsString(logModel));
+//            throw e;
+//        }
+//        return value;
+//    }
 }

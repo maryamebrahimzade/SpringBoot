@@ -1,7 +1,7 @@
-package com.example.common.security.filter;
+package com.example.config.security.filter;
 
-import com.example.common.security.jwt.JwtUtil;
-import com.example.common.security.token.EmailPasswordAuthenticationToken;
+import com.example.config.security.jwt.JwtUtil;
+import com.example.config.security.token.EmailPasswordAuthenticationToken;
 import com.example.user.models.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.FilterChain;
